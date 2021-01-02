@@ -34,16 +34,16 @@ public class ProductList extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_product_list, container, false);
         // Create an ArrayList of AndroidFlavor objects
-        mFlavor.add(new FlavorAdapter("White T-Shirt", "€10", R.drawable.m_tshirt1));
-        mFlavor.add(new FlavorAdapter("Black T-Shirt", "€11", R.drawable.w_tshirt1));
-        mFlavor.add(new FlavorAdapter("Blue T-Shirt", "€13", R.drawable.m_tshirt2));
-        mFlavor.add(new FlavorAdapter("Grey T-Shirt", "€10", R.drawable.w_tshirt2));
-        mFlavor.add(new FlavorAdapter("White T-Shirt", "€12", R.drawable.m_tshirt3));
-        mFlavor.add(new FlavorAdapter("White-Shirt", "€15", R.drawable.w_tshirt3));
-        mFlavor.add(new FlavorAdapter("White -Shirt", "€9", R.drawable.m_tshirt4));
-        mFlavor.add(new FlavorAdapter("WhiteT-Shirt", "€12", R.drawable.w_tshirt4));
-        mFlavor.add(new FlavorAdapter("White T-Shirt", "€11", R.drawable.m_tshirt5));
-        mFlavor.add(new FlavorAdapter("Black T-Shirt", "€10", R.drawable.w_tshirt5));
+        mFlavor.add(new FlavorAdapter("Men's Brown T-Shirt", "€10", R.drawable.m_tshirt1));
+        mFlavor.add(new FlavorAdapter("Women's Yellow T-Shirt", "€11", R.drawable.w_tshirt1));
+        mFlavor.add(new FlavorAdapter("Men's White T-Shirt", "€13", R.drawable.m_tshirt2));
+        mFlavor.add(new FlavorAdapter("Women's Yellow T-Shirt", "€10", R.drawable.w_tshirt2));
+        mFlavor.add(new FlavorAdapter("Men's Navy T-Shirt", "€12", R.drawable.m_tshirt3));
+        mFlavor.add(new FlavorAdapter("Women's White T-Shirt", "€15", R.drawable.w_tshirt3));
+        mFlavor.add(new FlavorAdapter("Men's White T -Shirt", "€9", R.drawable.m_tshirt4));
+        mFlavor.add(new FlavorAdapter("Women's White T-Shirt", "€12", R.drawable.w_tshirt4));
+        mFlavor.add(new FlavorAdapter("Men's Grey T-Shirt", "€11", R.drawable.m_tshirt5));
+        mFlavor.add(new FlavorAdapter("Women's Yellow T-Shirt", "€10", R.drawable.w_tshirt5));
 
         //start it with the view
         Log.d(TAG, "Starting recycler view");
