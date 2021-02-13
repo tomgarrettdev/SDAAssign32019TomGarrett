@@ -33,7 +33,7 @@ public class ProductList extends Fragment {
         // Inflate the layout for this fragment
 
         View root = inflater.inflate(R.layout.fragment_product_list, container, false);
-        // Create an ArrayList of AndroidFlavor objects
+        // Create an ArrayList of objects - storing product images and descriptions including price
         mFlavor.add(new FlavorAdapter("Men's Brown T-Shirt", "€10", R.drawable.m_tshirt1));
         mFlavor.add(new FlavorAdapter("Women's Yellow T-Shirt", "€11", R.drawable.w_tshirt1));
         mFlavor.add(new FlavorAdapter("Men's White T-Shirt", "€13", R.drawable.m_tshirt2));
@@ -45,7 +45,7 @@ public class ProductList extends Fragment {
         mFlavor.add(new FlavorAdapter("Men's Grey T-Shirt", "€11", R.drawable.m_tshirt5));
         mFlavor.add(new FlavorAdapter("Women's Yellow T-Shirt", "€10", R.drawable.w_tshirt5));
 
-        //start it with the view
+        //start it with the view - supports the display of a collection of data - allows different layout managers for positioning items.
         Log.d(TAG, "Starting recycler view");
         RecyclerView recyclerView = root.findViewById(R.id.recyclerView_view);
         FlavorViewAdapter recyclerViewAdapter = new FlavorViewAdapter(getContext(), mFlavor);

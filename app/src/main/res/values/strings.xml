@@ -26,5 +26,8 @@
     <string name="welcome_description">Buy and sell TShirts here.</string>
     <string name="welcome_image_of_tshirts">Welcome image of tshirts</string>
     <string name="WelcomeLogo">Welcome page logo</string>
+    <string name="ninjas">Delivery</string>
+    <string name="radio_true">Delivery</string>
+    <string name="Collection">Collection</string>
 
 </resources>

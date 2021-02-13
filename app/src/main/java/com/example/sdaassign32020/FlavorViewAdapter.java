@@ -38,7 +38,7 @@ import static android.widget.Toast.LENGTH_SHORT;
  * @author Chris Coughlan 2019
  */
 
-// Referring to the ViewHolder class, creating an adapter by extending the recycler view adapter class and specifying the type which is viewholder
+// Referring to the ViewHolder class, extends the RecyclerView.Adapter class and is assigned the recycler view with the RecyclerView.setAdapter method.
 public class FlavorViewAdapter extends RecyclerView.Adapter<FlavorViewAdapter.ViewHolder> {
     private static final String TAG = "RecyclerViewAdapter";
     private Context mNewContext;
@@ -51,7 +51,7 @@ public class FlavorViewAdapter extends RecyclerView.Adapter<FlavorViewAdapter.Vi
         this.mFlavors = mflavor;
     }
 
-    //Responsible for inflating the view, recycling the view holders and putting them into position.
+    // used to prepare the items by inflating the correct layout for the individual data elements. It returns an object of type ViewHolder per visual entry in the recycler view.
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -82,13 +82,14 @@ public class FlavorViewAdapter extends RecyclerView.Adapter<FlavorViewAdapter.Vi
             }
         });
     }
-
+    // return the total number of items with its getItemCount() method.
     @Override
     public int getItemCount() {
         return mFlavors.size();
     }
 
-    //ViewHolder class
+    // ViewHolder inner class is used to store references to the views for one entry into the recycler view.
+    // This is implemented as a static inner class in the adapter which holds references to the relevant views.
     class ViewHolder extends RecyclerView.ViewHolder{
 
         ImageView imageItem;

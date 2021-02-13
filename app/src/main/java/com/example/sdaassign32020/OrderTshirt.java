@@ -2,6 +2,7 @@ package com.example.sdaassign32020;
 
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.InputType;
@@ -14,10 +15,15 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import static android.widget.Toast.LENGTH_SHORT;
 
 
 /*
@@ -26,6 +32,8 @@ import androidx.fragment.app.Fragment;
  */
 public class OrderTshirt extends Fragment {
 
+    RadioGroup rg;
+    RadioButton rb;
 
     public OrderTshirt() {
         // Required empty public constructor
@@ -84,14 +92,39 @@ public class OrderTshirt extends Fragment {
         return root;
     }
 
-
     //Take a photo note the view is being passed so we can get context because it is a fragment.
     //update this to save the image so it can be sent via email
-    private void dispatchTakePictureIntent(View v)
-    {
+    private void dispatchTakePictureIntent(View v) {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(v.getContext().getPackageManager()) != null) {
             startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == REQUEST_TAKE_PHOTO) {
+            Bitmap image = (Bitmap) data.getExtras().get("data");
+            mCameraImage.setImageBitmap(image);
+        }
+    }
+
+    public void onRadioButtonClicked(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
+
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.deliveryRadio:
+                if (checked)
+                    // Pirates are the best
+
+                    break;
+            case R.id.collectionRadio:
+                if (checked)
+
+                    break;
         }
     }
 
@@ -120,7 +153,7 @@ public class OrderTshirt extends Fragment {
         String customerName = mCustomerName.getText().toString();
         if (mCustomerName == null || customerName.equals(""))
         {
-            Toast.makeText(getContext(), "Please enter your name", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Please enter your name", LENGTH_SHORT).show();
 
             /* we can also use a dialog
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
