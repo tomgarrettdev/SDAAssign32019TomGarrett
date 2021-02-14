@@ -26,8 +26,12 @@
     <string name="welcome_description">Buy and sell TShirts here.</string>
     <string name="welcome_image_of_tshirts">Welcome image of tshirts</string>
     <string name="WelcomeLogo">Welcome page logo</string>
-    <string name="ninjas">Delivery</string>
-    <string name="radio_true">Delivery</string>
-    <string name="Collection">Collection</string>
+    <string name="send_order">SEND ORDER</string>
+    <string name="or_for_collection_in_days">Or - for Collection in (days)</string>
+    <string name="enter_your_delivery_address">Enter Your Delivery Address</string>
+    <string name="take_photo_for_t_shirt">Take photo for T-Shirt</string>
+    <string name="enter_your_name">Enter Your Name</string>
+    <string name="delivery">Delivery</string>
+    <string name="todo">TODO</string>
 
 </resources>

@@ -1,9 +1,15 @@
 package com.example.sdaassign32020;
 
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.provider.MediaStore;
 import android.text.InputType;
 import android.util.Log;
@@ -13,15 +19,20 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import java.io.File;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
@@ -31,9 +42,6 @@ import static android.widget.Toast.LENGTH_SHORT;
  * @author Chris Coughlan 2019
  */
 public class OrderTshirt extends Fragment {
-
-    RadioGroup rg;
-    RadioButton rb;
 
     public OrderTshirt() {
         // Required empty public constructor
@@ -45,6 +53,8 @@ public class OrderTshirt extends Fragment {
     private EditText mCustomerName;
     private EditText meditDelivery;
     private ImageView mCameraImage;
+    Switch deliverySwitch;
+    TextView editCollect;
 
     //static keys
     private static final int REQUEST_TAKE_PHOTO = 2;
@@ -64,6 +74,23 @@ public class OrderTshirt extends Fragment {
 
         mCameraImage = root.findViewById(R.id.imageView);;
         Button mSendButton = root.findViewById(R.id.sendButton);
+        deliverySwitch = root.findViewById(R.id.deliverySwitch);
+        editCollect = root.findViewById(R.id.editCollect);
+
+        deliverySwitch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (deliverySwitch.isChecked()) {
+                    meditDelivery.setVisibility(View.VISIBLE);
+                    mSpinner.setVisibility(View.GONE);
+                    editCollect.setVisibility(View.GONE);
+                } else {
+                    meditDelivery.setVisibility(View.GONE);
+                    mSpinner.setVisibility(View.VISIBLE);
+                    editCollect.setVisibility(View.VISIBLE);
+                }
+            }
+        });
 
         //set a listener on the the camera image
         mCameraImage.setOnClickListener(new View.OnClickListener() {
@@ -110,24 +137,6 @@ public class OrderTshirt extends Fragment {
         }
     }
 
-    public void onRadioButtonClicked(View view) {
-        // Is the button now checked?
-        boolean checked = ((RadioButton) view).isChecked();
-
-        // Check which radio button was clicked
-        switch(view.getId()) {
-            case R.id.deliveryRadio:
-                if (checked)
-                    // Pirates are the best
-
-                    break;
-            case R.id.collectionRadio:
-                if (checked)
-
-                    break;
-        }
-    }
-
     /*
      * Returns the Email Body Message, update this to handle either collection or delivery
      */
@@ -149,6 +158,25 @@ public class OrderTshirt extends Fragment {
     //Update me to send an email
     private void sendEmail(View v)
     {
+        Log.i("Send email", "");
+        String[] TO = {"my-tshirt@sda.ie"};
+        String[] CC = {""};
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+
+        emailIntent.setData(Uri.parse("mailto:"));
+        emailIntent.setType("text/plain");
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, mCustomerName.getText().toString());
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "");
+        Uri uri = Uri.parse("file://" + mCameraImage);
+        emailIntent.putExtra(Intent.EXTRA_STREAM, uri);
+
+        try {
+            startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         //check that Name is not empty, and ask do they want to continue
         String customerName = mCustomerName.getText().toString();
         if (mCustomerName == null || customerName.equals(""))
@@ -162,6 +190,7 @@ public class OrderTshirt extends Fragment {
         } else {
             Log.d(TAG, "sendEmail: should be sending an email with "+createOrderSummary(v));
         }
+
     }
 
 }
