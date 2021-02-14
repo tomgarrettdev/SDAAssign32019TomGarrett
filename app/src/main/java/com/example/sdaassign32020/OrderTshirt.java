@@ -9,6 +9,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Parcelable;
 import android.provider.MediaStore;
 import android.text.InputType;
@@ -55,6 +56,7 @@ public class OrderTshirt extends Fragment {
     private ImageView mCameraImage;
     Switch deliverySwitch;
     TextView editCollect;
+
 
     //static keys
     private static final int REQUEST_TAKE_PHOTO = 2;
@@ -162,6 +164,7 @@ public class OrderTshirt extends Fragment {
         String[] TO = {"my-tshirt@sda.ie"};
         String[] CC = {""};
         Intent emailIntent = new Intent(Intent.ACTION_SEND);
+
 
         emailIntent.setData(Uri.parse("mailto:"));
         emailIntent.setType("text/plain");
